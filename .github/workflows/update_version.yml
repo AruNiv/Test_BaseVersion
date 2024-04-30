@@ -13,15 +13,16 @@ jobs:
       issues: write
       pull-requests: write
     runs-on: ubuntu-latest
+    
     steps:
       
       - name: Set base version to 3.0.0        
         if: ${{ env.BASE_VERSION == 'base' }}
         run: |
             git tag v3.0.0
-            git notes --ref semantic-release add -f -m '{"channels":["null"]}' v3.0.0  
+              
             git push origin  refs/tags/v3.0.0                    
-            git push --force origin  refs/notes/semantic-release
+            
               
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v2
