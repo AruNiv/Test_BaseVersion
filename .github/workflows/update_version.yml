@@ -23,6 +23,7 @@ jobs:
             git config --global user.name "AruNiv"
             git tag -a v3.0.0 -m "my base version"
             git push origin v3.0.0
+            echo "::set-env name=BASE_VERSION::done"
                      
       
       - uses: actions/setup-node@v2
