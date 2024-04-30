@@ -29,10 +29,15 @@ jobs:
             git config --global user.email "aarya.hy@gmail.com"
             git config --global user.name "AruNiv"
             git tag -a v3.0.0 -m "my base version"                        
-            git push -u origin feature_initial_version v3.0.0  
             gh release create v3.0.0 --target feature_initial_version
         env:
           GITHUB_TOKEN: ${{ secrets.MYTOKEN }}
+
+      - name: Push the changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: 'update the version'
+          branch: feature_initial_version
       
       - uses: actions/setup-node@v2
         with:
