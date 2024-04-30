@@ -15,14 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      
+      - uses: actions/checkout@v4
       - name: Set base version to 3.0.0        
         if: ${{ env.BASE_VERSION == 'base' }}
         run: |
             git tag -a v3.0.0 -m "my base version"
             git push origin v3.0.0           
               
-      - uses: actions/checkout@v4
+      
       - uses: actions/setup-node@v2
         with:
           node-version: 20
