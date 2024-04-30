@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+
+env:
+    BASE_VERSION: base
+  
+jobs:
+  release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Set base version to 3.0.0        
+        if: ${{ env.BASE_VERSION == 'base' }}
+        run: |
+            git tag v3.0.0
+            git notes --ref semantic-release add -f -m '{"channels":["null"]}' v3.0.0  
+            git push origin  refs/tags/v3.0.0                    
+            git push --force origin  refs/notes/semantic-release
+              
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 20
+      - run: echo "Test_BaseVersion" | cat > version_info.txt
+      - run: npm install --save-exact
+      - run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.MYTOKEN }}
+
+      - name: Push the changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: 'update the version'
+          branch: main 
+
+      - name: Check if version is updated
+        id: check_version
+        run: |
+          if grep ^[0-9] < version_info.txt; then
+            echo "VERSION_CHANGED=true" >> "$GITHUB_OUTPUT"
+            else
+            echo "VERSION_CHANGED=false" >> "$GITHUB_OUTPUT"
+          fi
