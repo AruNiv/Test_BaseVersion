@@ -29,7 +29,9 @@ jobs:
             git config --global user.email "aarya.hy@gmail.com"
             git config --global user.name "AruNiv"
             git tag -a v3.0.0 -m "my base version"
-            git push origin v3.0.0                    
+            git notes --ref semantic-release add -f -m '{"channels":["null"]}' v3.0.0
+            git push origin v3.0.0  
+            git push --force origin  refs/notes/semantic-release
       
       - uses: actions/setup-node@v2
         with:
