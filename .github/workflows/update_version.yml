@@ -30,7 +30,9 @@ jobs:
             git config --global user.name "AruNiv"
             git tag -a v3.0.0 -m "my base version"
             gh release create v3.0.0 ./dist/*.tgz --generate-notes            
-            git push origin v3.0.0              
+            git push origin v3.0.0     
+        env:
+          GITHUB_TOKEN: ${{ secrets.MYTOKEN }}
       
       - uses: actions/setup-node@v2
         with:
