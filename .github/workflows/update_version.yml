@@ -19,10 +19,8 @@ jobs:
       - name: Set base version to 3.0.0        
         if: ${{ env.BASE_VERSION == 'base' }}
         run: |
-            git tag v3.0.0
-              
-            git push origin  refs/tags/v3.0.0                    
-            
+            git tag -a v3.0.0 -m "my base version"
+            git push origin v3.0.0           
               
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v2
