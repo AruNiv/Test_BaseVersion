@@ -41,6 +41,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: 20
+        if: steps.base_version.outputs.BASE_VERSION == 'false'
       - run: echo "Test_BaseVersion" | cat > version_info.txt
       - run: npm install --save-exact
       - run: npx semantic-release
