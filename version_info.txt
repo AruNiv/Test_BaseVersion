@@ -1,1 +1,1 @@
-Test_BaseVersion
+version=Test_BaseVersion
