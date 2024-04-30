@@ -29,8 +29,7 @@ jobs:
       - name: Set the base version as 3.0.0
         if: steps.base_version.outputs.BASE_VERSION == 'true'        
         run: |
-            git config --global user.email "aarya.hy@gmail.com"
-            git config --global user.name "AruNiv"
+            git config --global user.name ${{ secrets.adapiovolt_user }}
             git tag -a v3.0.0 -m "my base version"                        
             git push -u origin feature_initial_version v3.0.0  
             gh release create v3.0.0 --target feature_initial_version 
