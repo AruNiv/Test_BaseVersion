@@ -1,1 +1,3 @@
-version=Test_BaseVersion
+Test_BaseVersion
+1.0.0
+Update version_info.txt
