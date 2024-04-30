@@ -29,7 +29,7 @@ jobs:
             git config --global user.email "aarya.hy@gmail.com"
             git config --global user.name "AruNiv"
             git tag -a v3.0.0 -m "my base version"
-            gh release create v3.0.0 --generate-notes            
+            gh release create v3.0.0            
             git push origin v3.0.0     
         env:
           GITHUB_TOKEN: ${{ secrets.MYTOKEN }}
